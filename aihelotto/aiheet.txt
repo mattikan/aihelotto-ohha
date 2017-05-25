@@ -1,0 +1,29 @@
+shakki;peli;shakkipeli, hassua vuoropohjaista läpsyttelyä
+tammi;peli;nappulapeli, tätä pelataan joskus gurulassa kai
+pong;peli;pongipeli, kaks lautaa ja pallo
+budjettiohjelma;työkalu;budjetointiohjelma, joka auttaa opiskelijan rahaongelmissa
+irkkibotti;botti;irkkibottiohjelma
+släkkibotti;botti;släkkibotti, se huonompi irkkibotti
+
+tehtävägeneraattori;työkalu;tekee mallivastauksen ja tehtävän, esim matikkaa tai fysiikkaa
+opintojenseurantajärjestelmä;työkalu;no sis hops käytännössä mut javalla
+code snippet manager;työkalu;kts. nimi
+laskin;työkalu;matikankursseille avuksi
+html wysiwyg;työkalu;wysiwyg-editori hötömölölle
+
+tetris;peli;paloja tippuu, pitää sovitella
+pacman;peli;pakene haamuja, syö nappeja
+tower defence;peli;pysäytä vihollisaallot sijoittelemalla torneja matkan varrelle
+asteroids;peli;ammu asteroidit paloiksi
+space invaders;peli;ammu alienit paloiksi
+tasohyppelypeli;peli;hyppele tasoilla
+yatzy;peli;nopanheittopeli
+miinaharava;peli;haravoi miinat kentältä
+laivanupotus;peli;upota vihollisen laivat nopeammin kuin se upottaa sun
+sudoku;peli;japanilaistyyliin älynystyröidenhierontaa
+ristinolla;peli;jätkän shakki
+
+pasianssi;korttipeli;työtehokkuuden turmio, tuo managerien vihaama, windowsin sisältämä yksinpelikorttipeli
+uno;korttipeli;neljä väriä, numeroita, erikoiskortteja, koita päästä kaikista eroon
+texas hold'em;korttipeli;just se pokeripeli
+
