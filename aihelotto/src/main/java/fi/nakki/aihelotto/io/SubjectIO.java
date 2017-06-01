@@ -94,6 +94,16 @@ public class SubjectIO {
         return subjects;
     }
     
+    public List<Subject> getSubjectsOfGroups(List<String> groups) {
+        List<Subject> subjects = new ArrayList<>();
+        for (Subject s : this.getSubjects()) {
+            if (groups.stream().anyMatch(str -> str.trim().equals(s.getGroup()))) {
+                subjects.add(s);
+            }
+        }
+        return subjects;
+    }
+    
     public void printGroups() {
         for (String s : this.getGroups()) {
             System.out.println(s);
