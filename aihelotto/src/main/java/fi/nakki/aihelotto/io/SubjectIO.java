@@ -52,12 +52,15 @@ public class SubjectIO {
     
     public void writeSubjects(ArrayList<Subject> subjects) {
         try {
-            FileWriter fileWriter = new FileWriter(this.f.getPath());
+            FileWriter fileWriter = new FileWriter(this.f, true);
             BufferedWriter buffered = new BufferedWriter(fileWriter);
             for (Subject s : subjects) {
-                buffered.write(s.getName() + ";");
-                buffered.write(s.getGroup() + ";");
-                buffered.write(s.getDescription());
+                if (this.subjects.contains(s)) {
+                    continue;
+                }
+                buffered.append(s.getName() + ";");
+                buffered.append(s.getGroup() + ";");
+                buffered.append(s.getDescription());
                 buffered.newLine();
             }
             buffered.close();

@@ -22,6 +22,10 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {
         initComponents();
+        this.readGroupsForList();
+    }
+    
+    public void readGroupsForList() {
         jList1.setListData(MainGUI.sio.getGroups().toArray(new String[0]));
     }
 
@@ -39,13 +43,17 @@ public class MainGUI extends javax.swing.JFrame {
         description = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        title.setText("jLabel1");
+        title.setText("Aiheen nimi");
 
         randomSubjectButton.setText("Arvo aihe");
         randomSubjectButton.addActionListener(new java.awt.event.ActionListener() {
@@ -54,10 +62,28 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        description.setText("jLabel2");
+        description.setText("Aiheen kuvaus");
 
         jList1.setModel(new DefaultListModel());
         jScrollPane2.setViewportView(jList1);
+
+        jTextField1.setText("Uusi aihe");
+
+        jTextField2.setText("Uusi kuvaus");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jTextField3.setText("Uusi ryhmä");
+
+        jButton1.setText("Lisää aihe");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -73,12 +99,18 @@ public class MainGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(title)
-                    .addComponent(randomSubjectButton)
-                    .addComponent(description))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(title)
+                            .addComponent(randomSubjectButton)
+                            .addComponent(description)))
+                    .addComponent(jButton1))
                 .addContainerGap(363, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -93,7 +125,15 @@ public class MainGUI extends javax.swing.JFrame {
                         .addComponent(description)
                         .addGap(86, 86, 86)
                         .addComponent(randomSubjectButton)))
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,6 +154,22 @@ public class MainGUI extends javax.swing.JFrame {
             description.setText(subject.getDescription());
         }
     }//GEN-LAST:event_randomSubjectButtonActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (!jTextField1.equals("")
+                && !jTextField2.equals("")) {
+            ArrayList<Subject> subjects = new ArrayList<>();
+            Subject subject = new Subject(jTextField1.getText(), jTextField3.getText(), jTextField2.getText());
+            subjects.add(subject);
+            MainGUI.sio.writeSubjects(subjects);
+            MainGUI.sio.readSubjects();
+            this.readGroupsForList();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,11 +216,15 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel description;
+    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JButton randomSubjectButton;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
