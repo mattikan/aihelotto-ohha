@@ -21,8 +21,8 @@ public class SubjectIOTest {
     public void testReadSubjectsFromFile() {
         SubjectIO instance = new SubjectIO("src/test/resources/testiaiheet.txt");
         instance.readSubjects();
-        assertTrue(instance.getSubjects().get(1).getDescription().equals("zxcv"));
-        assertTrue(instance.getSubjects().get(0).getName().equals("aihe"));
+        assertTrue(instance.readSubjects().get(1).getDescription().equals("zxcv"));
+        assertTrue(instance.readSubjects().get(0).getName().equals("aihe"));
     }
 
     @Test
@@ -32,24 +32,6 @@ public class SubjectIOTest {
         List<String> compared = new ArrayList<>();
         compared.add("ryhmä");
         compared.add("asdf");
-        assertTrue(instance.getGroups().equals(compared));
-    }
-
-    @Test
-    public void testGetSubjectsOfGroup() {
-        SubjectIO instance = new SubjectIO("src/test/resources/testiaiheet.txt");
-        instance.readSubjects();
-        List<Subject> compared = new ArrayList<>();
-        Subject s1 = new Subject("qwer", "asdf", "zxcv");
-        compared.add(s1);
-        assertTrue(instance.getSubjectsOfGroup("asdf").equals(compared));
-    }
-
-    @Test
-    public void testGetRandomSubject() {
-        SubjectIO instance = new SubjectIO("src/test/resources/testiaiheet.txt");
-        instance.readSubjects();
-        Subject s = instance.getRandomSubject(instance.getSubjects());
-        assertTrue(instance.getSubjects().contains(s));
+        assertTrue(instance.readGroups().equals(compared));
     }
 }

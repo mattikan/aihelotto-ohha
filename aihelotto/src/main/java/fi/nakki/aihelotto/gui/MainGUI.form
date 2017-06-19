@@ -53,11 +53,13 @@
                           <Component id="title" min="-2" max="-2" attributes="0"/>
                           <Component id="randomSubjectButton" min="-2" max="-2" attributes="0"/>
                           <Component id="description" min="-2" max="-2" attributes="0"/>
+                          <Component id="group" min="-2" max="-2" attributes="0"/>
+                          <Component id="clearGroups" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="363" max="32767" attributes="0"/>
+              <EmptySpace pref="195" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,8 +73,12 @@
                       <Component id="title" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="description" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="group" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Component id="randomSubjectButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="clearGroups" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
@@ -91,7 +97,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="title">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Aiheen nimi"/>
+        <Property name="text" type="java.lang.String" value="Paina Arvo aihe -nappia arpoaksesi aiheen!"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="randomSubjectButton">
@@ -104,7 +110,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="description">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Aiheen kuvaus"/>
+        <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -150,6 +156,19 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="group">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="clearGroups">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Putsaa valitut ryhm&#xe4;t"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearGroupsActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

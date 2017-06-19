@@ -6,6 +6,7 @@
 package fi.nakki.aihelotto.gui;
 
 import fi.nakki.aihelotto.io.SubjectIO;
+import fi.nakki.aihelotto.logic.SubjectLogic;
 import fi.nakki.aihelotto.subject.Subject;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,9 @@ public class MainGUI extends javax.swing.JFrame {
         initComponents();
         this.readGroupsForList();
     }
-    
+
     public void readGroupsForList() {
-        jList1.setListData(MainGUI.sio.getGroups().toArray(new String[0]));
+        jList1.setListData(MainGUI.sl.getGroups().toArray(new String[0]));
     }
 
     /**
@@ -47,13 +48,15 @@ public class MainGUI extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        group = new javax.swing.JLabel();
+        clearGroups = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        title.setText("Aiheen nimi");
+        title.setText("Paina Arvo aihe -nappia arpoaksesi aiheen!");
 
         randomSubjectButton.setText("Arvo aihe");
         randomSubjectButton.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +65,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        description.setText("Aiheen kuvaus");
+        description.setText(" ");
 
         jList1.setModel(new DefaultListModel());
         jScrollPane2.setViewportView(jList1);
@@ -82,6 +85,15 @@ public class MainGUI extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        group.setText(" ");
+
+        clearGroups.setText("Putsaa valitut ryhmät");
+        clearGroups.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearGroupsActionPerformed(evt);
             }
         });
 
@@ -109,9 +121,11 @@ public class MainGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(title)
                             .addComponent(randomSubjectButton)
-                            .addComponent(description)))
+                            .addComponent(description)
+                            .addComponent(group)
+                            .addComponent(clearGroups)))
                     .addComponent(jButton1))
-                .addContainerGap(363, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,8 +137,12 @@ public class MainGUI extends javax.swing.JFrame {
                         .addComponent(title)
                         .addGap(18, 18, 18)
                         .addComponent(description)
-                        .addGap(86, 86, 86)
-                        .addComponent(randomSubjectButton)))
+                        .addGap(18, 18, 18)
+                        .addComponent(group)
+                        .addGap(52, 52, 52)
+                        .addComponent(randomSubjectButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(clearGroups)))
                 .addGap(53, 53, 53)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -140,19 +158,16 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void randomSubjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomSubjectButtonActionPerformed
-        if (jList1.getSelectedValuesList().isEmpty()) {
-            Subject subject = MainGUI.sio.getRandomSubject(MainGUI.sio.getSubjects());
-            title.setText(subject.getName());
-            description.setText(subject.getDescription());
-        } else {
-            List<String> groups = new ArrayList<>();
-            for (String s : jList1.getSelectedValuesList()) {
-                groups.add(s);
-            }
-            Subject subject = MainGUI.sio.getRandomSubject(MainGUI.sio.getSubjectsOfGroups(groups));
-            title.setText(subject.getName());
-            description.setText(subject.getDescription());
+
+        List<String> groups = new ArrayList<>();
+        for (String s : jList1.getSelectedValuesList()) {
+            groups.add(s);
         }
+        Subject subject = this.sl.getRandomSubject(groups);
+        title.setText(subject.getName());
+        description.setText(subject.getDescription());
+        group.setText(subject.getGroup());
+
     }//GEN-LAST:event_randomSubjectButtonActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -165,11 +180,14 @@ public class MainGUI extends javax.swing.JFrame {
             ArrayList<Subject> subjects = new ArrayList<>();
             Subject subject = new Subject(jTextField1.getText(), jTextField3.getText(), jTextField2.getText());
             subjects.add(subject);
-            MainGUI.sio.writeSubjects(subjects);
-            MainGUI.sio.readSubjects();
+            MainGUI.sl.writeSubjects(subjects);
             this.readGroupsForList();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void clearGroupsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearGroupsActionPerformed
+        this.jList1.clearSelection();
+    }//GEN-LAST:event_clearGroupsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,8 +219,7 @@ public class MainGUI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        MainGUI.sio = new SubjectIO("aiheet.txt");
-        MainGUI.sio.readSubjects();
+        MainGUI.sl = new SubjectLogic(new SubjectIO("aiheet.txt"));
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -212,10 +229,12 @@ public class MainGUI extends javax.swing.JFrame {
         });
     }
 
-    private static SubjectIO sio;
+    private static SubjectLogic sl;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clearGroups;
     private javax.swing.JLabel description;
+    private javax.swing.JLabel group;
     private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;

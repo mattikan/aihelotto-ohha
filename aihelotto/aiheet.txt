@@ -27,4 +27,3 @@ pasianssi;korttipeli;työtehokkuuden turmio, tuo managerien vihaama, windowsin s
 uno;korttipeli;neljä väriä, numeroita, erikoiskortteja, koita päästä kaikista eroon
 texas hold'em;korttipeli;just se pokeripeli
 
-Uusi aihe;Uusi ryhmä;Uusi kuvaus
