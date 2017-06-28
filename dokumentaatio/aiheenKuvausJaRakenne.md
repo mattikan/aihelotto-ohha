@@ -7,7 +7,10 @@
 **Käyttäjien toiminnot:**
 
  - Aiheen arpominen haluamistaan kategorioista
- - Kaikkien aiheiden listaus
  - Kategorioiden listaus
- - Aiheiden tarkastelu kategorioittain
  - Aiheen lisäys ja tiedostoon kirjoitus
+
+ **Rakenne:** Ohjelmassa on luokka Subject, joka edustaa aihetta. Subjectilla on nimi ja kategoria, ja joillain aiheilla on myös kuvaus.
+SubjectIO-luokka käsittelee aiheiden lukemisen ja kirjoittamisen tiedostoon.
+SubjectLogic-luokka käsittelee kaiken aiheisiin liittyvän logiikan, ja sen kautta käsitellään myös SubjectIO:lle menevät IO-käskyt.
+MainGUI-luokka käsittelee kaiken käyttöliittymähomman, ja sen kautta käyttäjät voivat arpoa aiheita sekä tallentaa uusia aiheita tiedostoon.
