@@ -10,17 +10,30 @@ import java.util.*;
 import fi.nakki.aihelotto.subject.Subject;
 
 /**
+ * This class handles reading the file and writing to it. This class should only
+ * be used through SubjectLogic.
  *
  * @author nakki
  */
 public class SubjectIO {
-    
+
     private File f;
-    
+
+    /**
+     * Constructor for the class, to which the file path is given as a String.
+     *
+     * @param file path to file containing all subjects
+     */
     public SubjectIO(String file) {
         this.f = new File(file);
     }
-    
+
+    /**
+     * This method reads all the subjects from the file, puts them in a List and
+     * returns it.
+     *
+     * @return list of all subjects found in the file
+     */
     public List<Subject> readSubjects() {
         List subjects = new ArrayList<>();
         String line;
@@ -42,7 +55,12 @@ public class SubjectIO {
         }
         return subjects;
     }
-    
+
+    /**
+     * This method reads all the groups from the file containing all subjects
+     * and returns them as a List of Strings.
+     * @return all the groups found in the file given to this instance
+     */
     public List<String> readGroups() {
         List groups = new ArrayList<>();
         String line;
@@ -65,7 +83,12 @@ public class SubjectIO {
         }
         return groups;
     }
-    
+
+    /**
+     * This method writes all the subjects given to it in the subjects-parameter
+     * to the SubjectIO-instance's file.
+     * @param subjects 
+     */
     public void writeSubjects(List<Subject> subjects) {
         List<Subject> existingSubjects = this.readSubjects();
         try {
@@ -86,5 +109,5 @@ public class SubjectIO {
             e.printStackTrace();
         }
     }
-    
+
 }

@@ -20,7 +20,7 @@ import org.junit.Test;
 public class SubjectLogicTest {
 
     @Test
-    public void testGetSubjectsOfGroup(SubjectIOTest subjectIOTest) {
+    public void testGetSubjectsOfGroup() {
         SubjectIO instance = new SubjectIO("src/test/resources/testiaiheet.txt");
         SubjectLogic sl = new SubjectLogic(instance);
         instance.readSubjects();
