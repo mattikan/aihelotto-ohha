@@ -87,7 +87,7 @@ public class SubjectIO {
     /**
      * This method writes all the subjects given to it in the subjects-parameter
      * to the SubjectIO-instance's file.
-     * @param subjects 
+     * @param subjects list of subjects to write to file
      */
     public void writeSubjects(List<Subject> subjects) {
         List<Subject> existingSubjects = this.readSubjects();
