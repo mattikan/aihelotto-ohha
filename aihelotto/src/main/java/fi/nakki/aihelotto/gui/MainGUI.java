@@ -8,13 +8,16 @@ package fi.nakki.aihelotto.gui;
 import fi.nakki.aihelotto.io.SubjectIO;
 import fi.nakki.aihelotto.logic.SubjectLogic;
 import fi.nakki.aihelotto.subject.Subject;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import javax.swing.DefaultListModel;
 
 /**
  * This class handles all the GUI stuff. The user can grab a random subject or
  * write new subjects to the file through the GUI.
+ *
  * @author nakki
  */
 public class MainGUI extends javax.swing.JFrame {
@@ -26,7 +29,7 @@ public class MainGUI extends javax.swing.JFrame {
         initComponents();
         this.readGroupsForList();
     }
-    
+
     /**
      * This method reads groups for the group selection list in the GUI.
      */
@@ -161,9 +164,11 @@ public class MainGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 /**
- * This method handles updating the GUI when the button for a random subject is pressed.
- * @param evt 
- */
+     * This method handles updating the GUI when the button for a random subject
+     * is pressed.
+     *
+     * @param evt
+     */
     private void randomSubjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomSubjectButtonActionPerformed
         List<String> groups = new ArrayList<>();
         for (String s : jList1.getSelectedValuesList()) {
@@ -181,9 +186,11 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
-     * This method creates a new subject and tells SubjectLogic to write it to the file.
-     * It grabs the subject's information from the text boxes in the GUI.
-     * @param evt 
+     * This method creates a new subject and tells SubjectLogic to write it to
+     * the file. It grabs the subject's information from the text boxes in the
+     * GUI.
+     *
+     * @param evt
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (!jTextField1.equals("")
@@ -198,7 +205,8 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * This method clears the groups list selection.
-     * @param evt 
+     *
+     * @param evt
      */
     private void clearGroupsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearGroupsActionPerformed
         this.jList1.clearSelection();

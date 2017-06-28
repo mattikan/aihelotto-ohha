@@ -8,6 +8,8 @@ package fi.nakki.aihelotto.io;
 import java.io.*;
 import java.util.*;
 import fi.nakki.aihelotto.subject.Subject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class handles reading the file and writing to it. This class should only
@@ -26,6 +28,25 @@ public class SubjectIO {
      */
     public SubjectIO(String file) {
         this.f = new File(file);
+        if (!f.exists()) {
+            try {
+                f.createNewFile();
+                InputStream is = getClass().getClassLoader().getResourceAsStream("aiheet.txt");
+                Scanner luija = new Scanner(is);
+                String line;
+                List subjects = new ArrayList<>();
+                while (luija.hasNextLine()) {
+                    line = luija.nextLine();
+                    String [] s = line.split(";");
+                    if (s.length == 3) {
+                        subjects.add(new Subject(s[0], s[1], s[2]));
+                    }
+                }
+                this.writeSubjects(subjects);
+            } catch (IOException ex) {
+                Logger.getLogger(SubjectIO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
